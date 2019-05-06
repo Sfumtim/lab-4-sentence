@@ -10,23 +10,19 @@ import demo.service.SentenceService;
 
 @RestController
 public class SentenceController {
-	@Autowired RestTemplate template;
-@Autowired SentenceService sentenceService;
-	
-	
+	@Autowired
+	RestTemplate template;
+	@Autowired
+	SentenceService sentenceService;
+
 	/**
 	 * Display a small list of Sentences to the caller:
 	 */
 	@GetMapping("/sentence")
 	public @ResponseBody String getSentences() {
-	  return 
-		"<h3>Some Sentences</h3><br/>" +	  
-		sentenceService.buildSentence() + "<br/><br/>" +
-		sentenceService.buildSentence() + "<br/><br/>" +
-		sentenceService.buildSentence() + "<br/><br/>" +
-		sentenceService.buildSentence() + "<br/><br/>" +
-		sentenceService.buildSentence() + "<br/><br/>"
-		;
+		return "<h3>Some Sentences</h3><br/>" + sentenceService.buildSentence() + "<br/><br/>"
+				+ sentenceService.buildSentence() + "<br/><br/>" + sentenceService.buildSentence() + "<br/><br/>"
+				+ sentenceService.buildSentence() + "<br/><br/>" + sentenceService.buildSentence() + "<br/><br/>";
 	}
 //
 //	@GetMapping("/sentence")
@@ -39,8 +35,8 @@ public class SentenceController {
 //	      + getWord("LAB-4-NOUN") + "."
 //	      ;
 //	  }
-	  
-	  public String getWord(String service) {
-		  return template.getForObject("http://" + service, String.class);
-	  }
+//
+//	public String getWord(String service) {
+//		return template.getForObject("http://" + service, String.class);
+//	}
 }

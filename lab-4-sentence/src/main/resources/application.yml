@@ -1,10 +1,19 @@
-#eureka.client.serviceUrl.defaultZone: http://localhost:8010/eureka/
-#spring:
-#  cloud:
-#    config:
-#      uri: http://localhost:8002
-feign:
-    hystrix:
-        enabled: true
 server:
-  port: 8020 
+  port: 8020
+feign:
+ hystrix:
+  enabled: true
+ribbon:
+  eureka:
+    enable: true
+    isSecure: false
+    readTimeout: 60000
+    connectTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

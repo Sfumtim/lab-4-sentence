@@ -20,23 +20,18 @@ public class SentenceController {
 	 */
 	@GetMapping("/sentence")
 	public @ResponseBody String getSentences() {
-		return "<h3>Some Sentences</h3><br/>" + sentenceService.buildSentence() + "<br/><br/>"
-				+ sentenceService.buildSentence() + "<br/><br/>" + sentenceService.buildSentence() + "<br/><br/>"
-				+ sentenceService.buildSentence() + "<br/><br/>" + sentenceService.buildSentence() + "<br/><br/>";
+		return "<h3>Some Sentences</h3><br/>" + buildSentence() + "<br/><br/>" + buildSentence() + "<br/><br/>"
+				+ buildSentence() + "<br/><br/>" + buildSentence() + "<br/><br/>" + buildSentence() + "<br/><br/>";
 	}
-//
-//	@GetMapping("/sentence")
-//	  public @ResponseBody String getSentence() {
-//	    return 
-//	      getWord("LAB-4-SUBJECT") + " "
-//	      + getWord("LAB-4-VERB") + " "
-//	      + getWord("LAB-4-ARTICLE") + " "
-//	      + getWord("LAB-4-ADJECTIVE") + " "
-//	      + getWord("LAB-4-NOUN") + "."
-//	      ;
-//	  }
-//
-//	public String getWord(String service) {
-//		return template.getForObject("http://" + service, String.class);
-//	}
+
+	/**
+	 * Assemble a sentence by gathering random words of each part of speech:
+	 */
+	public String buildSentence() {
+		String sentence = "There was a problem assembling the sentence!";
+		sentence = String.format("%s %s %s %s %s.", sentenceService.fetchSubject(), sentenceService.fetchVerb(),
+				sentenceService.fetchArticle(), sentenceService.fetchAdjective(), sentenceService.fetchNoun());
+		return sentence;
+	}
+
 }

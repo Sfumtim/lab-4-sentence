@@ -19,16 +19,7 @@ public class SentenceServiceImpl implements SentenceService {
 	private AdjectiveClient adjectiveClient;
 	private NounClient nounClient;
 
-	/**
-	 * Assemble a sentence by gathering random words of each part of speech:
-	 */
-	public String buildSentence() {
-		String sentence = "There was a problem assembling the sentence!";
-		sentence = String.format("%s %s %s %s %s.", fetchSubject(), fetchVerb(), fetchArticle(), fetchAdjective(),
-				fetchNoun());
-		return sentence;
-	}
-
+	@Override
 	@HystrixCommand(fallbackMethod = "getFallbackSubject")
 	public String fetchSubject() {
 		String subject = subjectClient.getWord();
@@ -39,6 +30,7 @@ public class SentenceServiceImpl implements SentenceService {
 		return "Simeon";
 	}
 
+	@Override
 	@HystrixCommand(fallbackMethod = "getFallbackVerb")
 	public String fetchVerb() {
 		String verb = verbClient.getWord();
@@ -59,6 +51,7 @@ public class SentenceServiceImpl implements SentenceService {
 		return "la";
 	}
 
+	@Override
 	@HystrixCommand(fallbackMethod = "getFallbackAdjective")
 	public String fetchAdjective() {
 		String verb = adjectiveClient.getWord();
@@ -69,6 +62,7 @@ public class SentenceServiceImpl implements SentenceService {
 		return "pompeuse";
 	}
 
+	@Override
 	@HystrixCommand(fallbackMethod = "getFallbackNoun")
 	public String fetchNoun() {
 		String verb = nounClient.getWord();
